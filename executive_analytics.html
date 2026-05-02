@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Owner Executive Analytics</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "secondary-container": "#e1d4fd",
+                      "surface-container": "#f2ecf4",
+                      "primary": "#4f378a",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-bright": "#fdf7ff",
+                      "on-secondary-fixed": "#1f1635",
+                      "inverse-surface": "#322f35",
+                      "tertiary-fixed-dim": "#e7c365",
+                      "background": "#fdf7ff",
+                      "surface-container-high": "#ece6ee",
+                      "on-surface-variant": "#494551",
+                      "inverse-primary": "#cfbcff",
+                      "tertiary-container": "#c9a74d",
+                      "on-surface": "#1d1b20",
+                      "surface-dim": "#ded8e0",
+                      "surface-container-highest": "#e6e0e9",
+                      "on-primary": "#ffffff",
+                      "surface": "#fdf7ff",
+                      "error-container": "#ffdad6",
+                      "tertiary": "#765b00",
+                      "on-error": "#ffffff",
+                      "tertiary-fixed": "#ffdf93",
+                      "on-tertiary-container": "#503d00",
+                      "primary-fixed-dim": "#cfbcff",
+                      "on-primary-fixed": "#22005d",
+                      "outline-variant": "#cbc4d2",
+                      "on-tertiary": "#ffffff",
+                      "on-secondary-fixed-variant": "#4b4263",
+                      "on-error-container": "#93000a",
+                      "surface-container-low": "#f8f2fa",
+                      "surface-variant": "#e6e0e9",
+                      "error": "#ba1a1a",
+                      "primary-container": "#6750a4",
+                      "inverse-on-surface": "#f5eff7",
+                      "on-tertiary-fixed": "#241a00",
+                      "on-primary-container": "#e0d2ff",
+                      "secondary-fixed": "#e9ddff",
+                      "primary-fixed": "#e9ddff",
+                      "on-tertiary-fixed-variant": "#594400",
+                      "outline": "#7a7582",
+                      "on-secondary": "#ffffff",
+                      "secondary-fixed-dim": "#cdc0e9",
+                      "on-background": "#1d1b20",
+                      "on-primary-fixed-variant": "#4f378a",
+                      "surface-tint": "#6750a4",
+                      "on-secondary-container": "#645a7d",
+                      "secondary": "#63597c"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "worker_grid_gutter": "24px",
+                      "touch_target_min": "56px",
+                      "worker_margin": "16px",
+                      "owner_grid_gutter": "12px",
+                      "density_scale": "4px",
+                      "owner_margin": "24px"
+              },
+              "fontFamily": {
+                      "h1-worker": [
+                              "Inter"
+                      ],
+                      "body-operator": [
+                              "Inter"
+                      ],
+                      "label-caps": [
+                              "Inter"
+                      ],
+                      "h1-executive": [
+                              "Inter"
+                      ],
+                      "status-xl": [
+                              "Inter"
+                      ],
+                      "body-data": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "h1-worker": [
+                              "40px",
+                              {
+                                      "lineHeight": "48px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "800"
+                              }
+                      ],
+                      "body-operator": [
+                              "18px",
+                              {
+                                      "lineHeight": "26px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "label-caps": [
+                              "11px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "h1-executive": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "status-xl": [
+                              "56px",
+                              {
+                                      "lineHeight": "60px",
+                                      "fontWeight": "900"
+                              }
+                      ],
+                      "body-data": [
+                              "13px",
+                              {
+                                      "lineHeight": "18px",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background antialiased min-h-screen flex flex-col pt-16 pb-20 md:pb-0">
+<!-- TopAppBar -->
+<header class="bg-surface-container-lowest text-primary font-inter font-black tracking-tighter uppercase fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 h-16 border-b-2 border-on-surface">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface" style="font-variation-settings: 'FILL' 1;">factory</span>
+<span class="text-xl font-black text-on-surface tracking-widest">CNC_MONITOR</span>
+</div>
+<div class="flex items-center">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold text-sm">
+                OP
+            </div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow p-owner_margin max-w-7xl mx-auto w-full">
+<!-- WhatsApp-style Loss Alert -->
+<div class="bg-surface-container-lowest border border-error rounded-xl p-4 mb-6 flex items-start gap-3 shadow-sm">
+<div class="w-10 h-10 rounded-full bg-error-container flex-shrink-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-error" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+<div>
+<div class="flex items-baseline gap-2 mb-1">
+<span class="font-h1-executive text-h1-executive text-error">Alert</span>
+<span class="font-body-data text-body-data text-on-surface-variant">Just now</span>
+</div>
+<p class="font-body-operator text-body-operator text-on-surface">
+                    ⚠️ Machine CNC-02 is IDLE for 30 mins. You just lost ₹750!
+                </p>
+</div>
+</div>
+<!-- Dashboard Grid -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-owner_grid_gutter">
+<!-- Total Daily Financial Loss -->
+<div class="md:col-span-12 bg-error text-on-error rounded-xl p-6 flex flex-col justify-center items-center text-center shadow-sm">
+<h2 class="font-label-caps text-label-caps mb-2 opacity-90 uppercase tracking-widest">Total Daily Financial Loss</h2>
+<div class="font-status-xl text-status-xl flex items-center gap-2">
+<span>₹4,250</span>
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">trending_down</span>
+</div>
+<p class="font-body-data text-body-data mt-2 opacity-80">Estimated based on idle time across all machines today.</p>
+</div>
+<!-- Machine-wise Production Graphs -->
+<div class="md:col-span-8 bg-surface-container-lowest rounded-xl p-6 border border-outline-variant shadow-sm flex flex-col">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-h1-executive text-h1-executive text-on-surface">Machine Production (Target vs Actual)</h3>
+<span class="material-symbols-outlined text-on-surface-variant">bar_chart</span>
+</div>
+<div class="flex-grow flex flex-col justify-around gap-6">
+<!-- VMC-01 -->
+<div class="w-full">
+<div class="flex justify-between font-body-data text-body-data mb-1">
+<span class="font-semibold text-on-surface">VMC-01</span>
+<span class="text-on-surface-variant">80 / 100</span>
+</div>
+<div class="relative h-6 w-full bg-surface-container rounded overflow-hidden border border-outline-variant">
+<div class="absolute top-0 left-0 h-full bg-primary" style="width: 80%;"></div>
+</div>
+</div>
+<!-- CNC-02 -->
+<div class="w-full">
+<div class="flex justify-between font-body-data text-body-data mb-1">
+<span class="font-semibold text-error">CNC-02 (IDLE)</span>
+<span class="text-on-surface-variant">45 / 100</span>
+</div>
+<div class="relative h-6 w-full bg-surface-container rounded overflow-hidden border border-outline-variant">
+<div class="absolute top-0 left-0 h-full bg-error" style="width: 45%;"></div>
+</div>
+</div>
+<!-- HMC-02 -->
+<div class="w-full">
+<div class="flex justify-between font-body-data text-body-data mb-1">
+<span class="font-semibold text-on-surface">HMC-02</span>
+<span class="text-on-surface-variant">95 / 100</span>
+</div>
+<div class="relative h-6 w-full bg-surface-container rounded overflow-hidden border border-outline-variant">
+<div class="absolute top-0 left-0 h-full bg-primary" style="width: 95%;"></div>
+</div>
+</div>
+</div>
+<div class="flex justify-center gap-6 mt-4 pt-4 border-t border-outline-variant font-body-data text-body-data text-on-surface-variant">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 bg-primary rounded-sm"></div>
+<span>Actual (VMC/HMC)</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 bg-error rounded-sm"></div>
+<span>Actual (CNC)</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 border border-outline-variant bg-surface-container rounded-sm"></div>
+<span>Target Capacity</span>
+</div>
+</div>
+</div>
+<!-- Part-wise Production Breakdown -->
+<div class="md:col-span-4 bg-surface-container-lowest rounded-xl p-6 border border-outline-variant shadow-sm flex flex-col">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-h1-executive text-h1-executive text-on-surface">Part Breakdown</h3>
+<span class="material-symbols-outlined text-on-surface-variant">category</span>
+</div>
+<div class="flex-grow flex flex-col gap-4">
+<div class="flex items-center justify-between p-3 bg-surface rounded-lg border border-surface-variant">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-primary-container text-on-primary-container flex items-center justify-center font-label-caps text-label-caps">
+                                TB
+                            </div>
+<div class="flex flex-col">
+<span class="font-body-operator text-body-operator text-on-surface text-sm">Titanium Bracket</span>
+<span class="font-body-data text-body-data text-on-surface-variant text-xs">High Priority</span>
+</div>
+</div>
+<span class="font-h1-executive text-h1-executive text-primary">150x</span>
+</div>
+<div class="flex items-center justify-between p-3 bg-surface rounded-lg border border-surface-variant">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-secondary-container text-on-secondary-container flex items-center justify-center font-label-caps text-label-caps">
+                                SS
+                            </div>
+<div class="flex flex-col">
+<span class="font-body-operator text-body-operator text-on-surface text-sm">Steel Shaft</span>
+<span class="font-body-data text-body-data text-on-surface-variant text-xs">Standard</span>
+</div>
+</div>
+<span class="font-h1-executive text-h1-executive text-secondary">50x</span>
+</div>
+<div class="flex items-center justify-between p-3 bg-surface rounded-lg border border-surface-variant">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-surface-container-high text-on-surface flex items-center justify-center font-label-caps text-label-caps">
+                                AG
+                            </div>
+<div class="flex flex-col">
+<span class="font-body-operator text-body-operator text-on-surface text-sm">Alum. Gear</span>
+<span class="font-body-data text-body-data text-on-surface-variant text-xs">Low Priority</span>
+</div>
+</div>
+<span class="font-h1-executive text-h1-executive text-on-surface-variant">20x</span>
+</div>
+</div>
+</div>
+<!-- Export Action -->
+<div class="md:col-span-12 flex justify-end mt-4">
+<button class="bg-primary text-on-primary font-body-operator text-body-operator h-8 px-6 rounded flex items-center gap-2 hover:bg-primary/90 transition-colors shadow-sm">
+<span class="material-symbols-outlined text-sm">download</span>
+                    Export to Google Sheets
+                </button>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden bg-surface-container-lowest font-inter font-bold text-[11px] uppercase tracking-wider fixed bottom-0 left-0 w-full z-50 flex justify-around items-stretch h-20 border-t-4 border-on-surface">
+<a class="flex flex-col items-center justify-center text-on-surface-variant h-full w-full hover:bg-surface-variant transition-colors" href="executive_dashboard.html">
+<span class="material-symbols-outlined mb-1">precision_manufacturing</span>
+            Status
+        </a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant h-full w-full hover:bg-surface-variant transition-colors" href="#">
+<span class="material-symbols-outlined mb-1">assignment_turned_in</span>
+            Tasks
+        </a>
+<a class="flex flex-col items-center justify-center bg-on-surface text-surface-container-lowest h-full w-full active:bg-inverse-surface transition-colors" href="#">
+<span class="material-symbols-outlined mb-1">leaderboard</span>
+            Analytics
+        </a>
+</nav>
+</body></html>
