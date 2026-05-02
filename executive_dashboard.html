@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Owner Executive Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-container": "#6750a4",
+                      "inverse-primary": "#cfbcff",
+                      "on-tertiary-fixed-variant": "#594400",
+                      "surface-container-low": "#f8f2fa",
+                      "secondary-fixed-dim": "#cdc0e9",
+                      "on-tertiary-container": "#503d00",
+                      "error-container": "#ffdad6",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-container-high": "#ece6ee",
+                      "primary-fixed": "#e9ddff",
+                      "tertiary-fixed-dim": "#e7c365",
+                      "surface-variant": "#e6e0e9",
+                      "on-secondary-fixed-variant": "#4b4263",
+                      "on-error-container": "#93000a",
+                      "on-tertiary-fixed": "#241a00",
+                      "surface-dim": "#ded8e0",
+                      "surface-tint": "#6750a4",
+                      "primary": "#4f378a",
+                      "tertiary-fixed": "#ffdf93",
+                      "surface-container-highest": "#e6e0e9",
+                      "surface": "#fdf7ff",
+                      "surface-container": "#f2ecf4",
+                      "surface-bright": "#fdf7ff",
+                      "tertiary-container": "#c9a74d",
+                      "inverse-on-surface": "#f5eff7",
+                      "on-secondary": "#ffffff",
+                      "on-primary-fixed-variant": "#4f378a",
+                      "secondary-fixed": "#e9ddff",
+                      "secondary-container": "#e1d4fd",
+                      "secondary": "#63597c",
+                      "on-surface-variant": "#494551",
+                      "on-background": "#1d1b20",
+                      "on-secondary-container": "#645a7d",
+                      "outline": "#7a7582",
+                      "on-surface": "#1d1b20",
+                      "on-primary-container": "#e0d2ff",
+                      "inverse-surface": "#322f35",
+                      "error": "#ba1a1a",
+                      "primary-fixed-dim": "#cfbcff",
+                      "outline-variant": "#cbc4d2",
+                      "tertiary": "#765b00",
+                      "on-primary": "#ffffff",
+                      "background": "#fdf7ff",
+                      "on-primary-fixed": "#22005d",
+                      "on-error": "#ffffff",
+                      "on-tertiary": "#ffffff",
+                      "on-secondary-fixed": "#1f1635"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "worker_margin": "16px",
+                      "owner_margin": "24px",
+                      "worker_grid_gutter": "24px",
+                      "owner_grid_gutter": "12px",
+                      "touch_target_min": "56px",
+                      "density_scale": "4px"
+              },
+              "fontFamily": {
+                      "label-caps": [
+                              "Inter"
+                      ],
+                      "status-xl": [
+                              "Inter"
+                      ],
+                      "h1-worker": [
+                              "Inter"
+                      ],
+                      "body-data": [
+                              "Inter"
+                      ],
+                      "h1-executive": [
+                              "Inter"
+                      ],
+                      "body-operator": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "label-caps": [
+                              "11px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "status-xl": [
+                              "56px",
+                              {
+                                      "lineHeight": "60px",
+                                      "fontWeight": "900"
+                              }
+                      ],
+                      "h1-worker": [
+                              "40px",
+                              {
+                                      "lineHeight": "48px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "800"
+                              }
+                      ],
+                      "body-data": [
+                              "13px",
+                              {
+                                      "lineHeight": "18px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "h1-executive": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-operator": [
+                              "18px",
+                              {
+                                      "lineHeight": "26px",
+                                      "fontWeight": "500"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        body {
+            background-color: #f8f2fa; /* surface-container-low fallback */
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface-container-low text-on-surface flex h-screen overflow-hidden">
+<!-- NavigationDrawer (Hidden on Mobile) -->
+<aside class="hidden md:flex flex-col h-full py-6 px-4 w-64 border-r border-gray-200 bg-slate-50 dark:bg-slate-900 z-10 shrink-0">
+<div class="mb-8 px-2 flex items-center gap-3">
+<span class="material-symbols-outlined text-3xl text-primary" style="font-variation-settings: 'FILL' 1;">precision_manufacturing</span>
+<div>
+<h2 class="text-xl font-black text-indigo-900 dark:text-indigo-200 tracking-tighter">CNC Pulse</h2>
+<p class="font-label-caps text-label-caps text-secondary uppercase">Executive View</p>
+</div>
+</div>
+<nav class="flex flex-col gap-1 flex-1 font-inter text-sm font-medium">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-white dark:bg-gray-800 text-indigo-700 dark:text-indigo-300 border-l-4 border-indigo-600 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">grid_view</span>
+                Master Panel
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-gray-800 hover:pl-2 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">analytics</span>
+                Production Analytics
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-gray-800 hover:pl-2 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">inventory</span>
+                Workload Management
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-gray-800 hover:pl-2 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">error</span>
+                Loss Alerts
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-gray-800 hover:pl-2 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">settings_input_component</span>
+                System Config
+            </a>
+</nav>
+<div class="mt-auto px-2 flex items-center gap-3 pt-4 border-t border-gray-200">
+<img alt="Owner Avatar" class="w-10 h-10 rounded-full border border-gray-300" data-alt="A professional headshot of a corporate executive in a modern, well-lit office setting. The lighting is soft and bright, creating a high-key corporate aesthetic typical of light-mode UI designs. The color palette is composed of sophisticated neutral grays and crisp whites, complementing a serious, authoritative mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA665ZxqsErjIpc7gf2-p7SEmKSjYSvxcG8mHYUAu30E-iXRjvm_jXZ73mvxXrsMxM6jrDhCDeX0QcpMc3LaKjAI9fS-HTOCFrIUwCbH9mk9vjFfST69FAFde_j9TNw-RAUDwb3oUs7ii2lMm5H2Jh_VCWZOLrrhTgIVGWipKyGpVsDYDyvuuc_RvwwAk6_VYlkypFneQoknYoVzOL09AlE7meNUdhOvA4CqCqbwWEKbezvU77h42T1DmAzCnNYABYnwpbnrjV6f7g"/>
+<div>
+<p class="font-body-data text-body-data text-on-surface font-semibold">Admin Oversight</p>
+</div>
+</div>
+</aside>
+<div class="flex-1 flex flex-col h-full overflow-hidden">
+<!-- TopAppBar (Web & Mobile, adjusting layout) -->
+<header class="flex justify-between items-center w-full px-4 h-16 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 z-20 shrink-0 md:hidden">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">precision_manufacturing</span>
+<h1 class="font-inter font-bold tracking-tight text-lg font-black text-slate-900 dark:text-white tracking-tighter">CNC Pulse</h1>
+</div>
+<div class="flex items-center gap-4">
+<img alt="User Profile" class="w-8 h-8 rounded-full border border-gray-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlkS5duWqz0N2aFd8SCyxG_q4AcQgEyi-2GB24eEFId2Vw3i5K8cooubfIFY1SGYeWlafWcGDGtxKFeNqJ8hgKJkT0xf0VPtfkKb19hRic9EnrkMFPpaFe2LhuX8LHjC9fQmnpbtReU4PZFbZ-3ZdZx2pU4XWbtUw9dpmcYuE8Sr--SHDOoK7qorOOqAIm-ULTMAz2Uxo41UomEaVoObX0lnCeZBppaxjiVvcczibPVol-ON4_B3Q3lNX6i9MkS9h4UzOo6aNhKh4"/>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="flex-1 overflow-y-auto p-4 md:p-owner_margin">
+<div class="max-w-7xl mx-auto space-y-6 md:space-y-8 pb-24 md:pb-0">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 mb-2">
+<div>
+<h1 class="font-h1-executive text-h1-executive text-on-surface">Master Panel</h1>
+<p class="font-body-data text-body-data text-on-surface-variant mt-1">Real-time overview of production metrics and financial health.</p>
+</div>
+<div class="flex gap-2">
+<button class="h-[32px] px-4 bg-surface text-primary border border-outline-variant rounded hover:bg-surface-variant transition-colors font-body-data text-body-data font-medium flex items-center gap-2 whitespace-nowrap" onclick="alert('Simulating download: master_panel_export.xlsx')"><span class="material-symbols-outlined text-[18px]">download</span> Export to Excel</button>
+</div>
+</div>
+<!-- Top KPIs (Owner Theme: Dense, Analytical, Subtle Depth) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-owner_grid_gutter">
+<!-- KPI 1 -->
+<div class="bg-surface-container-lowest border border-gray-200 rounded-lg p-5 flex flex-col justify-between relative overflow-hidden">
+<div class="flex justify-between items-start mb-4">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Total Production</span>
+<span class="material-symbols-outlined text-secondary text-[20px]">precision_manufacturing</span>
+</div>
+<div>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-bold text-on-surface tracking-tight">12,450</span>
+<span class="font-body-data text-body-data text-on-surface-variant">units</span>
+</div>
+<div class="flex items-center gap-1 mt-2">
+<span class="material-symbols-outlined text-[16px] text-green-600">trending_up</span>
+<span class="font-body-data text-body-data text-green-600 font-medium">+4.2%</span>
+<span class="font-body-data text-body-data text-on-surface-variant text-[11px]">vs last shift</span>
+</div>
+</div>
+</div>
+<!-- KPI 2 -->
+<div class="bg-surface-container-lowest border border-gray-200 rounded-lg p-5 flex flex-col justify-between relative overflow-hidden">
+<div class="flex justify-between items-start mb-4">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Shift Efficiency</span>
+<span class="material-symbols-outlined text-secondary text-[20px]">speed</span>
+</div>
+<div>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-bold text-on-surface tracking-tight">87.5</span>
+<span class="font-body-data text-body-data text-on-surface-variant">%</span>
+</div>
+<div class="w-full bg-surface-variant rounded-full h-1.5 mt-3">
+<div class="bg-primary h-1.5 rounded-full" style="width: 87.5%"></div>
+</div>
+</div>
+</div>
+<!-- KPI 3 (Financial Loss - Bold Red) -->
+<div class="bg-error-container border border-error rounded-lg p-5 flex flex-col justify-between relative overflow-hidden">
+<div class="absolute top-0 right-0 p-3 opacity-10">
+<span class="material-symbols-outlined text-6xl text-error">warning</span>
+</div>
+<div class="flex justify-between items-start mb-4 relative z-10">
+<span class="font-label-caps text-label-caps text-on-error-container uppercase font-bold">Real-time Financial Loss</span>
+<span class="material-symbols-outlined text-error text-[20px]">currency_rupee</span>
+</div>
+<div class="relative z-10">
+<div class="flex items-baseline gap-1 text-on-error-container">
+<span class="text-xl font-medium">₹</span>
+<span class="text-4xl font-black tracking-tight">3,500</span>
+</div>
+<div class="flex items-center gap-1 mt-2">
+<span class="w-2 h-2 rounded-full bg-error animate-pulse"></span>
+<span class="font-body-data text-body-data text-on-error-container font-medium text-[12px]">3 machines currently stopped</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Charts Section -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-owner_grid_gutter">
+<!-- Bar Graph: Worker-wise Production -->
+<div class="bg-surface-container-lowest border border-gray-200 rounded-lg p-5 flex flex-col">
+<div class="flex justify-between items-center mb-6 border-b border-gray-100 pb-3">
+<h3 class="font-body-operator text-body-operator text-on-surface font-semibold">Worker-wise Production</h3>
+<button class="material-symbols-outlined text-on-surface-variant text-[20px]">more_vert</button>
+</div>
+<div class="flex-1 flex items-end gap-2 h-[200px] mt-4">
+<!-- Simulated Bar Chart -->
+<div class="flex-1 flex flex-col items-center gap-2 group cursor-pointer">
+<div class="w-full bg-primary/20 rounded-t transition-all group-hover:bg-primary/40 relative h-[140px]">
+<div class="absolute bottom-0 w-full bg-primary rounded-t transition-all group-hover:bg-primary-container h-[120px]"></div>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface-variant">W1</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 group cursor-pointer">
+<div class="w-full bg-primary/20 rounded-t transition-all group-hover:bg-primary/40 relative h-[180px]">
+<div class="absolute bottom-0 w-full bg-primary rounded-t transition-all group-hover:bg-primary-container h-[160px]"></div>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface-variant">W2</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 group cursor-pointer">
+<div class="w-full bg-primary/20 rounded-t transition-all group-hover:bg-primary/40 relative h-[90px]">
+<div class="absolute bottom-0 w-full bg-primary rounded-t transition-all group-hover:bg-primary-container h-[70px]"></div>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface-variant">W3</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 group cursor-pointer">
+<div class="w-full bg-primary/20 rounded-t transition-all group-hover:bg-primary/40 relative h-[160px]">
+<div class="absolute bottom-0 w-full bg-primary rounded-t transition-all group-hover:bg-primary-container h-[150px]"></div>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface-variant">W4</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 group cursor-pointer">
+<div class="w-full bg-error-container rounded-t transition-all relative h-[40px]">
+<div class="absolute bottom-0 w-full bg-error rounded-t transition-all h-[20px]"></div>
+</div>
+<span class="font-label-caps text-label-caps text-error">W5</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 group cursor-pointer">
+<div class="w-full bg-primary/20 rounded-t transition-all group-hover:bg-primary/40 relative h-[130px]">
+<div class="absolute bottom-0 w-full bg-primary rounded-t transition-all group-hover:bg-primary-container h-[110px]"></div>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface-variant">W6</span>
+</div>
+</div>
+</div>
+<!-- Line Graph: Machine-wise Production -->
+<div class="bg-surface-container-lowest border border-gray-200 rounded-lg p-5 flex flex-col">
+<div class="flex justify-between items-center mb-6 border-b border-gray-100 pb-3">
+<h3 class="font-body-operator text-body-operator text-on-surface font-semibold">Machine-wise Production</h3>
+<div class="flex items-center gap-3">
+<div class="flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="font-body-data text-body-data text-[10px] text-on-surface-variant">Output</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span class="font-body-data text-body-data text-[10px] text-on-surface-variant">Downtime</span>
+</div>
+</div>
+</div>
+<div class="flex-1 relative h-[200px] mt-4 overflow-hidden flex items-end border-l border-b border-gray-100 pl-2 pb-2">
+<!-- Simulated Line Chart Area -->
+<svg class="absolute bottom-2 left-2 w-[calc(100%-8px)] h-[calc(100%-8px)]" preserveaspectratio="none" viewbox="0 0 100 100">
+<!-- Grid lines -->
+<line stroke="#f3f4f6" stroke-width="0.5" x1="0" x2="100" y1="25" y2="25"></line>
+<line stroke="#f3f4f6" stroke-width="0.5" x1="0" x2="100" y1="50" y2="50"></line>
+<line stroke="#f3f4f6" stroke-width="0.5" x1="0" x2="100" y1="75" y2="75"></line>
+<!-- Primary Line -->
+<path d="M0,80 Q10,70 20,75 T40,40 T60,50 T80,20 T100,10" fill="none" stroke="#4f378a" stroke-width="1.5" vector-effect="non-scaling-stroke"></path>
+<!-- Error Spikes -->
+<path d="M25,100 L30,40 L35,100 Z" fill="#ffdad6" opacity="0.5"></path>
+<line stroke="#ba1a1a" stroke-dasharray="2 2" stroke-width="1" vector-effect="non-scaling-stroke" x1="30" x2="30" y1="100" y2="40"></line>
+</svg>
+<div class="w-full flex justify-between absolute bottom-[-20px] left-2 pr-2">
+<span class="font-body-data text-[10px] text-on-surface-variant">08:00</span>
+<span class="font-body-data text-[10px] text-on-surface-variant">10:00</span>
+<span class="font-body-data text-[10px] text-on-surface-variant">12:00</span>
+<span class="font-body-data text-[10px] text-on-surface-variant">14:00</span>
+<span class="font-body-data text-[10px] text-on-surface-variant">16:00</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Data Table (Owner-centric) -->
+<div class="bg-surface-container-lowest border border-gray-200 rounded-lg overflow-hidden">
+<div class="px-5 py-4 border-b border-gray-200 flex justify-between items-center bg-surface-container-low">
+<h3 class="font-body-operator text-body-operator text-on-surface font-semibold">Active Machine Status</h3>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-lowest border-b border-gray-200 font-label-caps text-label-caps text-on-surface-variant">
+<th class="py-2 px-5 font-semibold">Machine ID</th>
+<th class="py-2 px-5 font-semibold">Status</th>
+<th class="py-2 px-5 font-semibold">Current Operator</th>
+<th class="py-2 px-5 font-semibold">Output (Units)</th>
+<th class="py-2 px-5 font-semibold text-right">Efficiency</th>
+</tr>
+</thead>
+<tbody class="font-body-data text-body-data text-on-surface">
+<tr class="border-b border-gray-100 hover:bg-surface-container transition-colors h-[28px]">
+<td class="py-1 px-5 font-medium">CNC-Alpha-01</td>
+<td class="py-1 px-5"><span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-green-500"></span> Active</span></td>
+<td class="py-1 px-5">J. Smith</td>
+<td class="py-1 px-5">1,240</td>
+<td class="py-1 px-5 text-right">92%</td>
+</tr>
+<tr class="border-b border-gray-100 hover:bg-surface-container transition-colors h-[28px]">
+<td class="py-1 px-5 font-medium">CNC-Beta-02</td>
+<td class="py-1 px-5"><span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-green-500"></span> Active</span></td>
+<td class="py-1 px-5">M. Johnson</td>
+<td class="py-1 px-5">1,105</td>
+<td class="py-1 px-5 text-right">88%</td>
+</tr>
+<tr class="border-b border-gray-100 bg-error-container/20 hover:bg-error-container/30 transition-colors h-[28px]">
+<td class="py-1 px-5 font-medium text-error">CNC-Gamma-03</td>
+<td class="py-1 px-5 text-error"><span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-error"></span> Stopped</span></td>
+<td class="py-1 px-5">R. Davis</td>
+<td class="py-1 px-5 text-error">420</td>
+<td class="py-1 px-5 text-right text-error font-semibold">31%</td>
+</tr>
+<tr class="border-b border-gray-100 hover:bg-surface-container transition-colors h-[28px]">
+<td class="py-1 px-5 font-medium">CNC-Delta-04</td>
+<td class="py-1 px-5"><span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-amber-500"></span> Warning</span></td>
+<td class="py-1 px-5">S. Lee</td>
+<td class="py-1 px-5">890</td>
+<td class="py-1 px-5 text-right">75%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 px-2 pb-safe bg-white dark:bg-gray-950 border-t-2 border-black dark:border-gray-700 md:hidden">
+<a class="flex flex-col items-center justify-center text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-900 active:scale-95 transition-transform duration-75 w-16 h-16 rounded-lg" href="#">
+<span class="material-symbols-outlined mb-1">dashboard</span>
+<span class="text-[11px] font-bold uppercase tracking-wider font-inter">Status</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 rounded-lg py-1 px-3 hover:bg-gray-50 dark:hover:bg-gray-900 active:scale-95 transition-transform duration-75 w-16 h-16" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">grid_view</span>
+<span class="text-[11px] font-bold uppercase tracking-wider font-inter">Master Panel</span>
+</a>
+<a class="flex flex-col items-center justify-center text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-900 active:scale-95 transition-transform duration-75 w-16 h-16 rounded-lg" href="executive_analytics.html">
+<span class="material-symbols-outlined mb-1">analytics</span>
+<span class="text-[11px] font-bold uppercase tracking-wider font-inter">Analytics</span>
+</a>
+<a class="flex flex-col items-center justify-center text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-900 active:scale-95 transition-transform duration-75 w-16 h-16 rounded-lg" href="#">
+<span class="material-symbols-outlined mb-1">settings</span>
+<span class="text-[11px] font-bold uppercase tracking-wider font-inter">Settings</span>
+</a>
+</nav>
+</body></html>
