@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Worker Live Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-container": "#6750a4",
+                        "inverse-primary": "#cfbcff",
+                        "on-tertiary-fixed-variant": "#594400",
+                        "surface-container-low": "#f8f2fa",
+                        "secondary-fixed-dim": "#cdc0e9",
+                        "on-tertiary-container": "#503d00",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#ece6ee",
+                        "primary-fixed": "#e9ddff",
+                        "tertiary-fixed-dim": "#e7c365",
+                        "surface-variant": "#e6e0e9",
+                        "on-secondary-fixed-variant": "#4b4263",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed": "#241a00",
+                        "surface-dim": "#ded8e0",
+                        "surface-tint": "#6750a4",
+                        "primary": "#4f378a",
+                        "tertiary-fixed": "#ffdf93",
+                        "surface-container-highest": "#e6e0e9",
+                        "surface": "#fdf7ff",
+                        "surface-container": "#f2ecf4",
+                        "surface-bright": "#fdf7ff",
+                        "tertiary-container": "#c9a74d",
+                        "inverse-on-surface": "#f5eff7",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed-variant": "#4f378a",
+                        "secondary-fixed": "#e9ddff",
+                        "secondary-container": "#e1d4fd",
+                        "secondary": "#63597c",
+                        "on-surface-variant": "#494551",
+                        "on-background": "#1d1b20",
+                        "on-secondary-container": "#645a7d",
+                        "outline": "#7a7582",
+                        "on-surface": "#1d1b20",
+                        "on-primary-container": "#e0d2ff",
+                        "inverse-surface": "#322f35",
+                        "error": "#ba1a1a",
+                        "primary-fixed-dim": "#cfbcff",
+                        "outline-variant": "#cbc4d2",
+                        "tertiary": "#765b00",
+                        "on-primary": "#ffffff",
+                        "background": "#fdf7ff",
+                        "on-primary-fixed": "#22005d",
+                        "on-error": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed": "#1f1635",
+                        "status-running": "#16a34a", // Adding semantic colors as requested in instructions
+                        "on-status-running": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "worker_margin": "16px",
+                        "owner_margin": "24px",
+                        "worker_grid_gutter": "24px",
+                        "owner_grid_gutter": "12px",
+                        "touch_target_min": "56px",
+                        "density_scale": "4px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Inter"],
+                        "status-xl": ["Inter"],
+                        "h1-worker": ["Inter"],
+                        "body-data": ["Inter"],
+                        "h1-executive": ["Inter"],
+                        "body-operator": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "status-xl": ["56px", { "lineHeight": "60px", "fontWeight": "900" }],
+                        "h1-worker": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "800" }],
+                        "body-data": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "h1-executive": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "body-operator": ["18px", { "lineHeight": "26px", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined[data-weight="fill"] {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Mobile overscroll behavior */
+        body {
+            overscroll-behavior-y: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-sans">
+<!-- TopAppBar -->
+<header class="docked full-width top-0 border-b border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 flex justify-between items-center w-full px-4 h-16 shrink-0">
+<div class="flex items-center gap-3">
+<span aria-hidden="true" class="material-symbols-outlined text-slate-900 dark:text-white">precision_manufacturing</span>
+<span class="text-lg font-black text-slate-900 dark:text-white tracking-tighter">CNC Pulse</span>
+</div>
+<div>
+<!-- Using a solid color circle as placeholder for avatar to match guidelines of not requesting images unnecessarily -->
+<div aria-label="User Profile" class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold text-xs">U</div>
+</div>
+</header>
+<!-- Main Content Canvas (Worker Layout) -->
+<main class="flex-1 overflow-y-auto p-worker_margin flex flex-col gap-worker_grid_gutter pb-28 md:pb-worker_margin">
+<!-- Status Card (Worker-centric) -->
+<section class="w-full bg-status-running text-on-status-running rounded-xl border-[3px] border-black p-worker_margin flex flex-col items-center justify-center min-h-[200px]">
+<span aria-hidden="true" class="material-symbols-outlined text-[64px] mb-2" data-weight="fill">check_circle</span>
+<h1 class="font-status-xl text-status-xl text-center m-0">RUNNING</h1>
+</section>
+<!-- Progress Counter Plate -->
+<section class="w-full bg-surface-container-highest rounded-xl border-[3px] border-black p-worker_margin flex flex-col gap-4">
+<h2 class="font-label-caps text-label-caps text-on-surface-variant uppercase text-center">Jobs Done</h2>
+<div class="flex items-end justify-center gap-2">
+<span class="font-h1-worker text-h1-worker text-on-surface">42</span>
+<span class="font-h1-executive text-h1-executive text-outline pb-1">/ 100</span>
+</div>
+<!-- Progress Bar -->
+<div class="w-full h-4 bg-surface-variant rounded-full border border-outline overflow-hidden mt-2">
+<div class="h-full bg-primary" style="width: 42%;"></div>
+</div>
+</section>
+<!-- Details Grid (Worker Safe Zone spacing) -->
+<section class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container rounded-xl border-2 border-outline p-4 flex flex-col gap-1">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Machine</span>
+<span class="font-body-operator text-body-operator text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-outline text-sm">precision_manufacturing</span>
+                    CNC-02
+                </span>
+</div>
+<div class="bg-surface-container rounded-xl border-2 border-outline p-4 flex flex-col gap-1">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Part</span>
+<span class="font-body-operator text-body-operator text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-outline text-sm">settings</span>
+                    Gear-X1
+                </span>
+</div>
+</section>
+<div class="flex-1"></div> <!-- Spacer to push button down if needed -->
+<!-- Fat-Finger Action Button -->
+ <a href="scrap_entry.html">
+<button class="w-full h-touch_target_min bg-error text-on-error rounded-xl border-[3px] border-black font-h1-executive text-h1-executive flex items-center justify-center gap-3 active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-weight="fill">power_settings_new</span>
+            End Shift
+        </button></a>
+</main>
+<!-- BottomNavBar (Visible on Mobile/md:hidden) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 px-2 pb-safe bg-white dark:bg-gray-950 border-t-2 border-black dark:border-gray-700 md:hidden">
+<a class="flex flex-col items-center justify-center bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 rounded-lg py-1 px-3 active:scale-95 transition-transform duration-75" href="#">
+<span aria-hidden="true" class="material-symbols-outlined" data-weight="fill">dashboard</span>
+<span class="text-[11px] font-bold uppercase tracking-wider font-inter mt-1">Status</span>
+</a>
+<a class="flex flex-col items-center justify-center text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-900 active:scale-95 transition-transform duration-75 py-1 px-3 rounded-lg" href="task_selection.html">
+<span aria-hidden="true" class="material-symbols-outlined">assignment</span>
+<span class="text-[11px] font-bold uppercase tracking-wider font-inter mt-1">Tasks</span>
+</a>
+<a class="flex flex-col items-center justify-center text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-900 active:scale-95 transition-transform duration-75 py-1 px-3 rounded-lg" href="#">
+<span aria-hidden="true" class="material-symbols-outlined">leaderboard</span>
+<span class="text-[11px] font-bold uppercase tracking-wider font-inter mt-1">Analytics</span>
+</a>
+<a class="flex flex-col items-center justify-center text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-900 active:scale-95 transition-transform duration-75 py-1 px-3 rounded-lg" href="#">
+<span aria-hidden="true" class="material-symbols-outlined">settings</span>
+<span class="text-[11px] font-bold uppercase tracking-wider font-inter mt-1">Settings</span>
+</a>
+</nav>
+<!-- NavigationDrawer (Visible on Web/md:flex) -->
+<nav class="hidden md:flex flex-col h-full py-6 px-4 bg-slate-50 dark:bg-slate-900 h-full w-64 border-r border-gray-200 dark:border-gray-800 fixed left-0 top-16 z-40">
+<div class="mb-8">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold">O</div>
+<div>
+<h3 class="font-inter text-sm font-bold text-slate-900 dark:text-white">Admin Oversight</h3>
+<p class="font-inter text-xs text-slate-500">Executive View</p>
+</div>
+</div>
+</div>
+<ul class="flex flex-col gap-2">
+<li>
+<a class="flex items-center gap-3 px-3 py-2 bg-white dark:bg-gray-800 text-indigo-700 dark:text-indigo-300 border-l-4 border-indigo-600 font-inter text-sm font-medium rounded-r-md" href="#">
+<span class="material-symbols-outlined" data-weight="fill">grid_view</span>
+                    Master Panel
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-gray-800 hover:pl-4 transition-all duration-200 font-inter text-sm font-medium rounded-md" href="#">
+<span class="material-symbols-outlined">analytics</span>
+                    Production Analytics
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-gray-800 hover:pl-4 transition-all duration-200 font-inter text-sm font-medium rounded-md" href="#">
+<span class="material-symbols-outlined">inventory</span>
+                    Workload Management
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-gray-800 hover:pl-4 transition-all duration-200 font-inter text-sm font-medium rounded-md" href="#">
+<span class="material-symbols-outlined">error</span>
+                    Loss Alerts
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-gray-800 hover:pl-4 transition-all duration-200 font-inter text-sm font-medium rounded-md" href="#">
+<span class="material-symbols-outlined">settings_input_component</span>
+                    System Config
+                </a>
+</li>
+</ul>
+</nav>
+<!-- Spacer for desktop drawer layout -->
+<div class="hidden md:block md:ml-64 md:pt-16 h-0 w-0"></div>
+</body></html>
